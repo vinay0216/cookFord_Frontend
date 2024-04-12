@@ -35,7 +35,7 @@ const Signup = () => {
                   <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='text'>
                     Query
                   </label>
-                  <textarea className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline' id='text' rows='3' placeholder='Message'></textarea>
+                  <textarea className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline' id='text'  placeholder='Message'></textarea>
                 </div>
                 <div className=' justify-between'>
                   <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
