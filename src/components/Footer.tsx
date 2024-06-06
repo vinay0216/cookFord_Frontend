@@ -1,15 +1,16 @@
+import Image from 'next/image'
 import React from 'react'
 
 const Footer = () => {
     return (
         <div>
-            <footer className="footer bg-black  p-6">
+            <footer className="footer bg-white  p-6">
                 <div >
                     <div className='grid grid-cols-4 gap-2'>
-                        <div className='text-2xl text-white text-center'>
-                            <p >Logo</p>
+                        <div className='text-2xl text-black text-center'>
+                        <Image src={"/images/logo1.png"} className='mix-blend-multiply' height={150} width={150} alt="logo"/>
                         </div>
-                        <div className='text-white'>
+                        <div className='text-black'>
                             <ul>
                                 <li>home</li>
                                 <li>about</li>
@@ -18,7 +19,7 @@ const Footer = () => {
                                 <li>blog</li>
                             </ul>
                         </div>
-                        <div className='text-white'>
+                        <div className='text-black'>
                             <ul>
                                 <li>contact</li>
                                 <li>terms & condition</li>
@@ -27,7 +28,7 @@ const Footer = () => {
                                 <li>Careers</li>
                             </ul>
                         </div>
-                        <div className='text-white'>
+                        <div className='text-black'>
                             <h1>Social link</h1>
                             <ul>
                                 <li>facebook</li>
@@ -40,7 +41,7 @@ const Footer = () => {
                     </div>
                     <div className="row">
                         <div className="col-md-12 ">
-                            <div className="copyright text-center text-white ">
+                            <div className="copyright text-center text-black ">
                                 <p>Copyright © 2020 . All rights reserved.</p>
                             </div>
                         </div>

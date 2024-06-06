@@ -1,34 +1,37 @@
-import React from 'react'
+import React from 'react';
 
 const Howitworks = () => {
     return (
-        <div >
-            <h1 className='text-center  text-2xl bg-slate-50 p-4 m-8'>How it works</h1>
-            <div className='flex gap-8'>
-                <div className='rounded-full bg-slate-50 text-center p-8'>
+        <div className="p-4 sm:p-8  bg-slate-50 mt-10">
+            <h1 className='text-center text-2xl bg-slate-50 rounded-full w-full p-2 mb-8'>How it works</h1>
+            <div className='flex flex-col gap-8 sm:flex-row'>
+                <div className='rounded-full bg-slate-50 text-center p-8 flex-1'>
                     <h1>Step 1</h1>
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut minus esse quae quo facere enim veniam magnam reiciendis consequatur animi ex optio, expedita,
-                        dolores laudantium accusantium necessitatibus laboriosam illum commodi ipsam! Quas!
+                        Download the Cook Ford App and Register yourself
                     </p>
                 </div>
-                <div className='rounded-full bg-slate-50 text-center p-8' >
-                    <h1 >step 2</h1>
+                <div className='rounded-full bg-slate-50 text-center p-8 flex-1'>
+                    <h1>Step 2</h1>
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut minus esse quae quo facere enim veniam magnam reiciendis consequatur animi ex optio, expedita,
-                        dolores laudantium accusantium necessitatibus laboriosam illum commodi ipsam! Quas!
+                        Choose from range of available services
                     </p>
                 </div>
-                <div className='rounded-full bg-slate-50 text-center   p-8'>
-                    <h1>step 3</h1>
+                <div className='rounded-full bg-slate-50 text-center p-8 flex-1'>
+                    <h1>Step 3</h1>
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut minus esse quae quo facere enim veniam magnam reiciendis consequatur animi ex optio, expedita,
-                        dolores laudantium accusantium necessitatibus laboriosam illum commodi ipsam! Quas!
+                        Share your preferences and complete the payment
+                    </p>
+                </div>
+                <div className='rounded-full bg-slate-50 text-center p-8 flex-1'>
+                    <h1>Step 4</h1>
+                    <p>
+                        Get a professionally-trained and trusted cook on time
                     </p>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Howitworks
+export default Howitworks;

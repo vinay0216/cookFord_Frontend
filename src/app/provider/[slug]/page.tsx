@@ -1,99 +1,95 @@
+'use client'
+import { getUsersProfile } from "@/api/user";
+import { setProfiles } from "@/app/lib/features/profileSlice";
+import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
+import SearchFilter from "@/app/ui/SearchFilter";
+import ProgresiveLoder from "@/app/ui/loder";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect } from "react";
+
+
 
 export default function Page({ params }: { params: { slug: string } }) {
+    const { slug } = params;
+
+    const dispatch = useAppDispatch()
+
+
+    const { isLoading, data } = useAppSelector(state => state.prfile);
+
+    useEffect(() => {
+        async function getUsers({ }) {
+            const data = await getUsersProfile()
+            dispatch(setProfiles(data.data));
+        }
+        getUsers(slug)
+    }, [slug])
+
+
     return (
         <>
-            <div>
-                my category {params.slug}
-            </div>
-            <div className="container mx-auto">
-                <section className=" m-6 p-6" >
-                    <div className="size-full bg-slate-50 ">
-                        <Image src={"/images/banner.png"}  width={1423} height={300} alt="banner..." />
-                    </div>
-                    <div className="flex">
-                        <div className=" w-56 border-gray-950 bg-slate-50 p-6 mt-6 mr-6 ">
-                            <div className="flex justify-center m-4 ">
-                                <div className="bg-gray-400 rounded-full w-20  h-20">
-                                    <Image src={"/images/"} height={50} width={50} alt="profile...." />
-                                </div>
-                            </div>
-                            <div className="">
-                                <p className="mb-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, rerum. Libero, nesciunt quam?</p>
-                                <button
-                                    type="submit"
-                                    className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                >
-                                    see info
-                                </button>
-                            </div>
+            <div className="flex">
+                {/* left section */}
+                <SearchFilter />
+                {/* right section */}
+                <div className="container mx-auto">
+                    <p>my category {params.slug}</p>
+                    <section className=" " >
+                        <div className="size-full bg-slate-50 m-6 ">
+                            <Image src={"/images/banner1.png"} width={1423} height={300} alt="banner..." />
                         </div>
-                        <div className=" w-56 border-gray-950 bg-slate-50 p-6 mt-6 mr-6">
-                            <div className="flex justify-center m-4 ">
-                                <div className="bg-gray-400 rounded-full w-20  h-20">
-                                    <Image src={"/images/"} height={50} width={50} alt="profile...." />
-                                </div>
-                            </div>
-                            <div className="">
-                                <p className="mb-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, rerum. Libero, nesciunt quam?</p>
-                                <button
-                                    type="submit"
-                                    className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                >
-                                    see info
-                                </button>
-                            </div>
-                        </div>
-                        <div className=" w-56 border-gray-950 bg-slate-50 p-6 mt-6 mr-6 ">
-                            <div className="flex justify-center m-4 ">
-                                <div className="bg-gray-400 rounded-full w-20  h-20">
-                                    <Image src={"/images/"} height={50} width={50} alt="profile...." />
-                                </div>
-                            </div>
-                            <div className="">
-                                <p className="mb-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, rerum. Libero, nesciunt quam?</p>
-                                <button
-                                    type="submit"
-                                    className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                >
-                                    see info
-                                </button>
-                            </div>
-                        </div>
-                        <div className=" w-56 border-gray-950 bg-slate-50 p-6 mt-6 mr-6 ">
-                            <div className="flex justify-center m-4 ">
-                                <div className="bg-gray-400 rounded-full w-20  h-20">
-                                    <Image src={"/images/"} height={50} width={50} alt="profile...." />
-                                </div>
-                            </div>
-                            <div className="">
-                                <p className="mb-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, rerum. Libero, nesciunt quam?</p>
-                                <button
-                                    type="submit"
-                                    className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                >
-                                    see info
-                                </button>
-                            </div>
-                        </div>
-                        <div className=" w-56 border-gray-950 bg-slate-50 p-6 mt-6 mr-6 ">
-                            <div className="flex justify-center m-4 ">
-                                <div className="bg-gray-400 rounded-full w-20  h-20">
-                                    <Image src={"/images/"} height={50} width={50} alt="profile...." />
-                                </div>
-                            </div>
-                            <div className="">
-                                <p className="mb-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, rerum. Libero, nesciunt quam?</p>
-                                <button
-                                    type="submit"
-                                    className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                >
-                                    see info
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+
+                        {isLoading ?
+                        <ProgresiveLoder/>
+                            : 
+                            data.map((item, index) => (
+                                <>
+                                {console.log("here is console item ",item )}
+                                    <div key={index} className="p-2 max-w-2xl mx-auto bg-white rounded-xl shadow-md   mt-4">
+                                        <div className="flex gap-2">
+                                            <div>
+                                                <div className="mx-auto grid justify-items-center m-4">
+                                                    <Image className="h-20 w-20" src="/images/new-image/defaultchef.png" width={50} height={50} alt="Company Logo" />
+                                                </div>
+                                                <Link href={`/profile/${item._id}`}>
+                                                    <button
+                                                        type="button"
+                                                        className="px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-red-700 focus:outline-none focus:ring focus:border-blue-300"
+                                                    //   onClick={}
+                                                    >
+                                                        View Profile
+                                                    </button>
+                                                </Link>
+                                            </div>
+                                            <div>
+                                                <div className="text-xl font-normal text-black">
+                                                    <p>
+                                                        {item.username}
+                                                    </p>
+                                                    {/* <p>{item?.profile.total_rating}</p> */}
+                                                </div>
+                                                <div className="text-black font-normal ">
+                                                    <p className="bg-orange-400">
+                                                        {item.profile?.cuisine}
+                                                    </p>
+                                                </div>
+                                                <div className="text-gray-500 font-normal ">
+                                                    <p>
+                                                        Experience: {item.profile?.experience}
+                                                    </p>
+                                                </div>
+                                                <p className="text-gray-500"> From:{item.profie?.from}</p>
+                                                <p className="text-gray-500"> Full Time Price : Rs.{item.profile?.fulltimeprice} / Month</p>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </>
+                            ))}
+                    </section>
+                </div>
             </div>
         </>
     )

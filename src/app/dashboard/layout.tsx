@@ -1,4 +1,16 @@
 import Link from "next/link"
+import { Fragment } from "react"
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+
+
 
 export default function DashboardLayout({
   children,
@@ -6,36 +18,45 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   return (
-    <section>
-      <div className="grid grid-cols-6 gap-2">
-      <div className=" bg-gray-50 col-span-1 border-current ">
-        <ul >
-          <li className="p-4 border hover:border-1">
-            <Link href="/dashboard">
-              Dashboard
-            </Link>
-          </li>
-          <li className="p-4 border">
-            <Link href="/dashboard/profile">
-           Profile 
-            </Link>
-          </li>
-          <li className="p-4 border">
-            <Link href="/dashboard/settings">
-               Settings 
-            </Link>
-          </li>
-          <li className="p-4 border">
-            <Link href="/logout">
-              Logout
-            </Link>
-          </li>
-        </ul>
+    <Fragment>
+      <div className="container mx-auto flex  flex-col md:flex-row md:overflow-hidden">
+      <Box sx={{ width: 250 }} role="presentation" >
+      <List>
+         <Link href={'/dashboard/ManageAccounts'}>
+          <ListItem  disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={'ManageAccounts'} />
+            </ListItemButton>
+          </ListItem>
+          </Link>
+         <Link href={'/dashboard/Payments'}>
+          <ListItem  disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={'Payments'} />
+            </ListItemButton>
+          </ListItem>
+          </Link>
+         <Link href={'/dashboard/Notifications'}>
+          <ListItem  disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary={'Notifications'} />
+            </ListItemButton>
+          </ListItem>
+          </Link>
+      </List>
+      <Divider />
+    </Box>
+    {children}
       </div>
-      <div className="col-span-5">
-        {children}
-      </div>
-      </div>
-    </section>
+    </Fragment>
   )
 }

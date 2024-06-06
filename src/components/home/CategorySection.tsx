@@ -3,27 +3,68 @@ import React, { Fragment } from 'react'
 import slide from "./../../../public/images/bg-bunner.png"
 
 const CategorySection = () => {
+
+ const data = [
+  {
+    id:1,
+    category:"chef for Home ",
+    image:""
+  },
+  {
+    id:2,
+    category:"chef for Hotel ",
+    image:""
+  },
+  {
+    id:3,
+    category:"Home ",
+    image:""
+  },
+  {
+    id:4,
+    category:"Home ",
+    image:""
+  },
+  {
+    id:5,
+    category:"Home ",
+    image:""
+  },
+  {
+    id:6,
+    category:"Home ",
+    image:""
+  },
+  
+
+ ]
+
+
+
   return (
     <Fragment>
-        <div>
-            <h1 className='text-2xl'>Category</h1>
-            <div className='flex gap-6 p-6'>
-            <div>
-              <Image src={slide} height={300} width={300} alt=''/>
+    <div>
+        <section className="container mx-auto mt-4 sm:p-4 md:p-8 lg:p-12">
+            <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Top Categories</h2>
+            <div className='flex flex-col sm:flex-row'>
+                {data?.map((item, index) => (
+                    <div className="p-2" key={index}>
+                        <div
+                            className="px-4 mb-6 bg-cover bg-center "
+                            style={{ backgroundImage: `url(/images/logo.jpg)` }}
+                        >
+                            <div className="bg-white bg-opacity-80 rounded-lg overflow-hidden  p-6">
+                                <h3 className="mt-4 text-xl text-center font-semibold text-gray-800">{item.category}</h3>
+                                
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
-            <div>
-              <Image src={slide} height={300} width={300} alt=''/>
-            </div>
-            <div>
-              <Image src={slide} height={300} width={300} alt=''/>
-            </div>
-            <div>
-              <Image src={slide} height={300} width={300} alt=''/>
-            </div>
-            </div>
-            
-        </div>
-    </Fragment>
+        </section>
+    </div>
+</Fragment>
+
   )
 }
 
