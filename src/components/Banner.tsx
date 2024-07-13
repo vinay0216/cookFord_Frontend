@@ -30,7 +30,7 @@ const Banner = () => {
 
   return (
     <div className="">
-      <div id="carouselExampleCrossfade" className="relative" data-twe-carousel-init data-twe-ride="carousel">
+      <div id="carouselExampleCrossfade" className="relative flex justify-center" data-twe-carousel-init data-twe-ride="carousel">
         {/* Carousel indicators */}
         <div className="absolute inset-x-0 bottom-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0" data-twe-carousel-indicators>
           {images.map((_, index) => (
@@ -50,13 +50,12 @@ const Banner = () => {
         </div>
 
         {/* Carousel items */}
-        <div className="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+        <div className="relative  w-4/5 overflow-hidden after:clear-both after:block after:content-['']">
           {images.map((item, index) => (
             <div
               key={item.id}
-              className={`relative float-left -mr-[100%] w-full transform-none transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none ${
-                activeIndex === index ? "opacity-100" : "opacity-0"
-              }`}
+              className={`relative float-left -mr-[100%] w-full transform-none transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none
+               ${ activeIndex === index ? "opacity-100" : "opacity-0"}`}
               data-twe-carousel-fade
               data-twe-carousel-item
               data-twe-carousel-active={activeIndex === index ? "true" : "false"}

@@ -39,40 +39,39 @@ const Header = () => {
 
     return (
         <>
-            <nav className="flex justify-around bg-white text-black  top-0 left-0 right-0">
+            <nav className="flex justify-around bg-white text-black  top-0 left-0 right-0 sticky z-50">
                 <div className='bg-transparent  '>
                     <Link href="/">
-                        <Image  className='mix-blend-multiply bg-transparent;'  src={"/images/logo8.png"} height={50} width={50} alt="logo"/>
+                        <Image  className='mix-blend-multiply bg-transparent;'  src={"/images/logo8.png"} height={60} width={60} alt="logo"/>
                     </Link>
                 </div>
-                <ul className='flex justify-center gap-8 mt-1 p-4'>
+                <ul className='flex justify-center gap-8 mt-4 '>
                     <li className="relative group">
-                        <button className='focus:outline-none'>Services</button>
+                        <button className='focus:outline-none hover: '>Services</button>
                         <ul className='dropdown-menu absolute hidden bg-white shadow-md rounded mt-2 py-1 group-hover:block'>
-
                             <li>
                                 <Link href={`/provider/${"cook-for-Monthly-basis"}`} className="block w-52 px-4  py-2 text-gray-800 hover:bg-gray-200">cook for Monthly basis </Link>
                             </li>
-
-
                             <li>
-                                <Link href={`/provider/${"cook-for-one-time"}`} className="block w-52 px-4  py-2 text-gray-800 hover:bg-gray-200">cook for one time  </Link></li>
+                                <Link href={`/provider/${"cook-for-one-time"}`} className="block w-52 px-4  py-2 text-gray-800 hover:bg-gray-200">cook for one time  </Link>
+                            </li>
                             <li>
-                                <Link href={`/provider/${"cook-for-occasion"}`} className="block w-52 px-4  py-2 text-gray-800 hover:bg-gray-200">cook for occasion </Link></li>
+                                <Link href={`/provider/${"cook-for-occasion"}`} className="block w-52 px-4  py-2 text-gray-800 hover:bg-gray-200">cook for occasion </Link>
+                            </li>
                         </ul>
                     </li>
-                    <li className="">Get a chefs job</li>
-                    <li className=""><a href="/contact-us">Find Chefs</a></li>
+                    <li className="">
+                        <Link href = "/coustomers/signup">Get a chefs job</Link>
+                    </li>
+                    <li className="">
+                        <Link href="/contact-us">Find Chefs</Link>
+                    </li>
                 </ul>
                 {!isLogin ?
-                    <div className=' flex gap-3 p-4'>
+                    <div className=' flex gap-3 mt-4'>
                         <Link href="/coustomers/login">
                             <button type='button' className='border-collapse'>login </button>
                         </Link>
-
-                        {/* <Link href="/coustomers/signup">
-                            <button type='button' className='border-1 '>Get Started </button>
-                        </Link> */}
                     </div>
                      : 
                     <>

@@ -4,7 +4,7 @@ const Howitworks = () => {
     return (
         <div className="p-4 sm:p-8  bg-slate-50 mt-10">
             <h1 className='text-center text-2xl bg-slate-50 rounded-full w-full p-2 mb-8'>How it works</h1>
-            <div className='flex flex-col gap-8 sm:flex-row'>
+            <div className='flex flex-col gap-8 sm:flex-row flex-wrap' >
                 <div className='rounded-full bg-slate-50 text-center p-8 flex-1'>
                     <h1>Step 1</h1>
                     <p>

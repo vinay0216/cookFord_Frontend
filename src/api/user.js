@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const baseurl = 'http://16.171.133.152:5000';
-const baseurl = 'http://localhost:5000';
+const baseurl = 'http://16.171.133.152:5000';
+// const baseurl = 'http://localhost:5000';
 
 
  async function userRegister(data) {
@@ -57,5 +57,14 @@ async function getUsersProfilbyid(id){
     }
 }
 
+async function bookService(id){
+    try {
+        const response = await axios.post(`${baseurl}/api/users/bookservice/${id}`);
+        return response;
+    }catch(error){
+        return error.response;
+    };
+}
 
-export { userRegister, userLogin,createProfile,getUsersProfile ,getUsersProfilbyid };
+
+export { userRegister, userLogin,createProfile,getUsersProfile ,getUsersProfilbyid,bookService };

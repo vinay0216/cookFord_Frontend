@@ -6,7 +6,7 @@ const Signup = () => {
   return (
     <Fragment>
       <div className='grid grid-cols-2 p-6 m-6'>
-        <div className='m-4'>
+        <div className='m-4 '>
             <Image src={"/images/new-image/contact.png"} height={500} width={500} alt='contect-us'/>
         </div>
         <div className=''>
@@ -38,8 +38,8 @@ const Signup = () => {
                   <textarea className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline' id='text'  placeholder='Message'></textarea>
                 </div>
                 <div className=' justify-between'>
-                  <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
-                    sign up
+                  <button className='bg-orange-300 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
+                    Send Query 
                   </button>
                  
                 </div>

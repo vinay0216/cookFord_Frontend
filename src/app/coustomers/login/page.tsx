@@ -27,14 +27,21 @@ const router = useRouter()
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const res = await userLogin(formData)
-    console.log("response",res)
+    // console.log("response login responce ",res.data)
     if(res.status === 200) {
       dispatch(login(res.data))
-    router.push('/dashboard/ManageAccounts')
+      let {userType} = res.data
+      if(userType === "provider"){
+        router.push('/dashboard/ManageAccounts')
+      }
+      else{
+        router.push('/provider/cook-for-Monthly-basis')
+      }
+    
 
-    toast.success(res.message)
+    toast.success(res.data.message)
   }else{
-    toast.error(res?.data.message)
+    toast.error(res?.data.error)
   }
   }
 
@@ -63,11 +70,13 @@ const router = useRouter()
                   <input className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' 
                   onChange={handleChange} name='password' type='password' placeholder='password' />
                 </div>
-                <div className=' justify-between'>
-                  <button type='submit' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
+                <div className='flex justify-between'>
+                  <button type='submit' className=' bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
                     Login
                   </button>
-                 <p>Don't have an accoun't<Link href="signup"> Register </Link> </p>
+                 <p>Don't have an account 
+                  <Link href="signup"> Register </Link>
+                  </p>
                 </div>
               </form>
             </div>
