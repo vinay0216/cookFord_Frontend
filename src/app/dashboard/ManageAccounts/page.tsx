@@ -524,7 +524,7 @@ import React, { ChangeEvent, useState } from 'react'
 import { createProfile } from '@/api/user'
 import { useAppSelector } from '@/app/lib/hooks'
 
-const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+const steps = ['Stap-1', 'Stap-2', 'Stap-3'];
 
 type FormDataType = {
   headline?: string;

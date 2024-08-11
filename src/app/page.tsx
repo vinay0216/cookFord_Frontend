@@ -3,6 +3,8 @@ import CategorySection from "@/components/home/CategorySection";
 import TopChef from "@/components/home/TopChef";
 // import TopChef from "@/components/home/TopChef";
 import Howitworks from "@/components/home/howitworks";
+import Happyclient from "@/components/home/Happyclient";
+import Priceplane from "@/components/home/plane";
 
 
 export default function Home() {
@@ -12,6 +14,8 @@ export default function Home() {
       <Howitworks />
       <CategorySection />
       <TopChef/>
+      <Happyclient/>
+      <Priceplane/>
     </main>
   );
 }

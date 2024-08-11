@@ -49,7 +49,7 @@ const TopChef: React.FC = () => {
 
     return (
         <>
-        <section className="container mx-auto mt-2 sm:p-4 md:p-8 lg:p-12 ">
+        <section className="container mx-auto sm:p-4 md:p-8 lg:p-12 ">
             <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Top chefs</h2>
             <div className='flex flex-col sm:flex-row flex-wrap'>
             {data?.map((items, index) => (

@@ -40,9 +40,9 @@ const handelpaynow= async(e)=>{
   console.log("pay now clicked");
  
   try{
-    let order = {
+    let order = { 
       CustomerName:"vinay kumar", 
-      OrderID: Order_ID,
+      OrderID: "Order_ID",
       OrderAmount: 100,
       // CurrencyCode: Currency_Code,
       number:"",

@@ -18,7 +18,10 @@ const SearchFilter = () => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
+    <>
+    <aside id="default-sidebar" className="fixed top-0 left-0 z-40 mt-16 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+   <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+   <div className="bg-gray-50 p-6 ">
       <div className="mb-4">
         <label htmlFor="search" className="block text-gray-700 text-sm font-bold mb-2">
           Search by Keyword
@@ -72,7 +75,15 @@ const SearchFilter = () => {
         Reset Filters
       </button>
     </div>
+   
+   </div>
+</aside>
+    </>
+    
   );
 };
 
 export default SearchFilter;
+
+
+

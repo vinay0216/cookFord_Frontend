@@ -65,7 +65,7 @@ const Page: React.FC = () => {
 
     return (
         <>
-            <div className='grid grid-cols-4 container mx-auto p-8'>
+            <div className='grid grid-cols-3 container mx-auto p-8'>
                 {isLoading ? (
                     <ProgresiveLoder />
                 ) : (
@@ -133,7 +133,7 @@ const Page: React.FC = () => {
                         </div>
                     </div>
                 )}
-                <div className='col-span-1'>
+                {/* <div className='col-span-1'>
                     <div className="mt-6 flex items-center justify-end gap-x-6">
                         <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
                             Publish Profile
@@ -147,7 +147,7 @@ const Page: React.FC = () => {
                         </button>
                         
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <FullScreenDialog open={open} setOpen={setOpen} />

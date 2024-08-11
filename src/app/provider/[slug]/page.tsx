@@ -4,6 +4,7 @@ import { setProfiles } from "@/app/lib/features/profileSlice";
 import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
 import SearchFilter from "@/app/ui/SearchFilter";
 import ProgresiveLoder from "@/app/ui/loder";
+import { Pagination } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -29,14 +30,26 @@ export default function Page({ params }: { params: { slug: string } }) {
 
     return (
         <>
-            <div className="flex">
-                {/* left section */}
-                <SearchFilter />
-                {/* right section */}
+            
+<button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+   <span className="sr-only">Open sidebar</span>
+   <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+   <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+   </svg>
+</button>
+
+
+  <SearchFilter /> 
+
+<div className="p-4 sm:ml-64">
+   <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+      <div className="grid  gap-4 mb-4">
+          <div className="flex">
+               
                 <div className="container mx-auto">
                     <p>my category {params.slug}</p>
                     <section className=" " >
-                        <div className="size-full bg-slate-50 m-6 ">
+                        <div className="size-full bg-slate-50  ">
                             <Image src={"/images/banner1.png"} width={1423} height={300} alt="banner..." />
                         </div>
 
@@ -45,7 +58,6 @@ export default function Page({ params }: { params: { slug: string } }) {
                             : 
                             data.map((item, index) => (
                                 <>
-                                {console.log("here is console item ",item )}
                                     <div key={index} className="p-2 max-w-2xl mx-auto bg-white rounded-xl shadow-md   mt-4">
                                         <div className="flex gap-2">
                                             <div>
@@ -67,7 +79,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                                                     <p>
                                                         {item.username}
                                                     </p>
-                                                    {/* <p>{item?.profile.total_rating}</p> */}
+                                                    {/* <p>{item?.profile.total_rating}</p>  */}
                                                 </div>
                                                 <div className="text-black font-normal ">
                                                     <p className="bg-orange-400">
@@ -89,8 +101,14 @@ export default function Page({ params }: { params: { slug: string } }) {
                                 </>
                             ))}
                     </section>
+                    <div className="flex justify-center mt-9">
+                        <Pagination count={10} color="primary" />
+                    </div>    
                 </div>
-            </div>
+            </div> 
+      </div>
+   </div>
+</div>
         </>
     )
 
