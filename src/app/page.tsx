@@ -1,10 +1,10 @@
-import Banner from "@/components/Banner";
-import CategorySection from "@/components/home/CategorySection";
-import TopChef from "@/components/home/TopChef";
-// import TopChef from "@/components/home/TopChef";
-import Howitworks from "@/components/home/howitworks";
-import Happyclient from "@/components/home/Happyclient";
-import Priceplane from "@/components/home/plane";
+import dynamic from "next/dynamic";
+const Happyclient  = dynamic(()=>import ('@/components/home/Happyclient'))
+const Priceplane = dynamic(() => import('@/components/home/plane'))
+const Howitworks = dynamic(() => import('@/components/home/howitworks'))
+const TopChef = dynamic(()=>import('@/components/home/TopChef'))
+const CategorySection = dynamic(() => import('@/components/home/CategorySection'))
+const Banner = dynamic(()=>import('@/components/Banner'))
 
 
 export default function Home() {

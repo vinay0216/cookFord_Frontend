@@ -24,26 +24,26 @@ const router = useRouter()
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({...formData, [e.target.name]: e.target.value})
   }
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const res = await userLogin(formData)
-    // console.log("response login responce ",res.data)
-    if(res.status === 200) {
-      dispatch(login(res.data))
-      let {userType} = res.data
-      if(userType === "provider"){
-        router.push('/dashboard/ManageAccounts')
-      }
-      else{
-        router.push('/provider/cook-for-Monthly-basis')
-      }
-    
 
-    toast.success(res.data.message)
-  }else{
-    toast.error(res?.data.error)
-  }
-  }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  
+    try {
+      const res = await userLogin(formData);
+      console.log("response",res.data)
+      if (res.status === 200) {
+        dispatch(login(res.data));
+        let { userType } = res.data;
+        router.push(userType === "provider" ? '/dashboard/ManageAccounts' : '/provider/cook-for-Monthly-basis');
+        toast.success(res.data.message);
+      } else {
+        toast.error(res?.data.error);
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    }
+  };
+  
 
 
   return (
