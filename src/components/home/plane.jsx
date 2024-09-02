@@ -3,8 +3,8 @@ import React from 'react'
 const Priceplane = () => {
   return (
     <>
-     <div className="py-10">
-        <div className="container mx-auto px-4">
+     <div className="bg-slate-50">
+        <div className="mx-auto p-6">
           <h2 className="text-2xl font-semibold text-center mb-6">
             Discover your perfect service
           </h2>

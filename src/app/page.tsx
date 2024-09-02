@@ -9,7 +9,7 @@ const Banner = dynamic(()=>import('@/components/Banner'))
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-8">
+    <main className="w-full min-h-screen flex-col items-center justify-between overflow-x-hidden">
       <Banner />
       <Howitworks />
       <CategorySection />

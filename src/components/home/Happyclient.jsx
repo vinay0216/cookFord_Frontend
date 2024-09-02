@@ -83,11 +83,9 @@ const Happyclient = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 mb-4">
-
-        <div>
+    <div className=" mx-auto">
+      <div className="p-4">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Happy Coustomer Review </h2>
-        </div>
       <Slider {...settings}>
         {data.map((item) => (
           <div key={item.id} className="p-4">
@@ -109,6 +107,8 @@ const Happyclient = () => {
           </div>
         ))}
       </Slider>
+      </div>
+
     </div>
   );
 };

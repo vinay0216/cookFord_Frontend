@@ -520,9 +520,10 @@ import Typography from '@mui/material/Typography';
 import Documents from './components/Documents'
 import Profileinfo from './components/Profileinfo'
 import Personalinfo from './components/Personalinfo'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { createProfile } from '@/api/user'
 import { useAppSelector } from '@/app/lib/hooks'
+
 
 const steps = ['Stap-1', 'Stap-2', 'Stap-3'];
 
@@ -534,38 +535,75 @@ type FormDataType = {
   [key: string]: any;
 };
 
-
+type FormDataType = {
+  [key: string]: any;
+};
 
 
 const Page: React.FC = () => {
+
+
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
-  const [FormData, setFormData] = useState<FormDataType>({})
-  console.log("form data==>", FormData)
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...FormData, [e.target.name]: e.target.value })
-  }
-  const handleChangetext = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setFormData({ ...FormData, [e.target.name]: e.target.value })
-  }
+  const [formData, setFormData] = useState<FormDataType>({});
 
+// Handle checkbox changes
+const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value, checked } = e.target;
 
-  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormData(prevFormData => {
+        const selectedValues = prevFormData[name] || []; // Get the current array of selected values or an empty array
+        if (checked) {
+            // Add the new value if the checkbox is checked
+            return { ...prevFormData, [name]: [...selectedValues, value] };
+        } else {
+            // Remove the value if the checkbox is unchecked
+            return { ...prevFormData, [name]: selectedValues.filter((item: string) => item !== value) };
+        }
+    });
+};
+
+// Handle text area changes
+const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+};
+
+// Handle file changes
+const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
     if (fileList && fileList.length > 0) {
-      const file = fileList[0]; // Get the first selected file
-      setFormData({ ...FormData, [event.target.name]: file });
-      console.log(file);
+        const file = fileList[0];
+        setFormData({ ...formData, [event.target.name]: file });
     }
-  };
+};
 
-  // console.log("form data=>",FormData)
+// Handle select changes
+const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+};
+
+  
+  // Example usage in the form components
+  
+  /* 
+  <form>
+    <input type="checkbox" name="morning" value="8:00 AM" onChange={handleChange} />
+    <input type="text" name="firstName" onChange={handleChangetext} />
+    <input type="file" name="profilePicture" onChange={handleFileChange} />
+  </form>
+  */
+  
+  console.log("FormData:", formData);
+  
+
+  
   const token = useAppSelector((state) => state.auth.accessToken);
+
 
   const hendelSubmit = async () => {
     try {
       const res = await createProfile(FormData, token);
-      console.log("res=>", res);
+      console.log("form data res=>", res);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -613,18 +651,12 @@ const Page: React.FC = () => {
     setActiveStep(0);
   };
 
-
-
-
-
-
   return (
-    <Box sx={{ width: '100%' }} className="p-8">
+    <Box sx={{ width: '100%' }} className="px-8">
       <Stepper activeStep={activeStep} className="p-8">
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
           const labelProps: { optional?: React.ReactNode } = {};
-          
           return (
             <Step key={label} {...stepProps}>
               <StepLabel {...labelProps}>{label}</StepLabel>
@@ -634,9 +666,9 @@ const Page: React.FC = () => {
       </Stepper>
       {activeStep === steps.length ? (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
+          {/* <Typography sx={{ mt: 2, mb: 1 }}>
             All steps completed - you&apos;re finished
-          </Typography>
+          </Typography> */}
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
             <Button onClick={handleReset}>Reset</Button>
@@ -647,13 +679,13 @@ const Page: React.FC = () => {
           {/* <Typography sx={{ mt: 2, mb: 1 }}>  Step {activeStep + 1} </Typography> */}
           <Box sx={{ mt: 2, mb: 1 }}>
             <>
-              <div className=' p-12'>
+              <div className=' py-4 '>
                 <form >
                   <div className="space-y-12 space-x-12">
                     {(() => {
                       switch (activeStep) {
                         case 0:
-                          return <Profileinfo  handleChangetext={handleChangetext} handleFileChange={handleFileChange} />;
+                          return <Profileinfo   handleTextChange={handleTextChange}  handleCheckboxChange={handleCheckboxChange} handleSelectChange={handleSelectChange} />;
                         case 1:
                           return <Documents  handleChangetext={handleChangetext} handleFileChange={handleFileChange} />;
                         case 2:
@@ -662,7 +694,6 @@ const Page: React.FC = () => {
                           return null;
                       }
                     })()}
-                   
                   </div>
                 </form>
               </div>
@@ -678,8 +709,17 @@ const Page: React.FC = () => {
               Back
             </Button>
             <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleNext}>
-            {/* onClick={hendelSubmit} */}
+            <Button 
+             onClick={async () => {
+              if (activeStep === steps.length - 1) {
+                // If on the last step, submit the form
+                await hendelSubmit();
+              } else {
+                // Otherwise, move to the next step
+                handleNext();
+              }
+            }}
+            >
               {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
             </Button>
           </Box>

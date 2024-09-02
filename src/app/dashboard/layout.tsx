@@ -22,7 +22,7 @@ export default function DashboardLayout({
   return (
     <Fragment>
       <div className="container mx-auto flex  flex-col md:flex-row md:overflow-hidden">
-      <Box sx={{ width: 250 }} role="presentation" >
+      <Box sx={{ width: 214 }} role="presentation" >
       <List>
          <Link href={'/dashboard/ManageAccounts'}>
           <ListItem  disablePadding>

@@ -52,9 +52,9 @@ const router = useRouter()
         <div className='m-4'>
             <Image src={"/images/new-image/notifications.png"} height={500} width={500} alt='login'/>
         </div>
-        <div className=''>
-          <h1 className='text-2xl font-semibold text-gray-800 mb-4 text-center'>Login</h1>
-            <div>
+        <div className='bg-white border-2  rounded-xl'>
+          <h1 className='text-2xl font-semibold text-gray-800 mt-12 text-center'>Login</h1>
+            <div className='p-24'>
               <form onSubmit={handleSubmit}>
                 <div className='mb-4'>
                   <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='Email'>

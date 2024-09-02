@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const baseurl = 'http://16.171.133.152:5000';
-// const baseurl = 'http://localhost:5000';
+// const baseurl = 'http://16.171.133.152:5000';
+const baseurl = 'http://localhost:5000';
 
 
  async function userRegister(data) {
@@ -27,7 +27,7 @@ const baseurl = 'http://16.171.133.152:5000';
 
 async function createProfile(data, token) {
     try {
-        const response = await axios.post(`${baseurl}/api/users/cookprofile`, data, {
+        const response = await axios.post(`${baseurl}/api/users/create-profile`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

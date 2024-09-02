@@ -1,36 +1,36 @@
+import Image from 'next/image';
 import React from 'react';
 
 const Howitworks = () => {
+
+    const Howitworks = [
+        { id: 1, text: " Download the Cook Ford App ", src: "/images/new-image/verify-kyc.png", alt: "Slide 1" },
+        { id: 2, text: " Choose available services", src: "/images/new-image/verify-kyc.png", alt: "Slide 2" },
+        { id: 3, text: "  Share your preferences ", src: "/images/new-image/verify-kyc.png", alt: "Slide 3" },
+        { id: 4, text: " Get trained cook on time", src: "/images/new-image/verify-kyc.png", alt: "Slide 4" },
+
+    ]
     return (
-        <div className="p-4 sm:p-8  bg-slate-50 mt-10">
-            <h1 className='text-center text-2xl bg-slate-50 rounded-full w-full p-2 mb-8'>How it works</h1>
-            <div className='flex flex-col gap-8 sm:flex-row flex-wrap' >
-                <div className='rounded-full bg-slate-50 text-center p-8 flex-1'>
-                    <h1>Step 1</h1>
-                    <p>
-                        Download the Cook Ford App and Register yourself
-                    </p>
-                </div>
-                <div className='rounded-full bg-slate-50 text-center p-8 flex-1'>
-                    <h1>Step 2</h1>
-                    <p>
-                        Choose from range of available services
-                    </p>
-                </div>
-                <div className='rounded-full bg-slate-50 text-center p-8 flex-1'>
-                    <h1>Step 3</h1>
-                    <p>
-                        Share your preferences and complete the payment
-                    </p>
-                </div>
-                <div className='rounded-full bg-slate-50 text-center p-8 flex-1'>
-                    <h1>Step 4</h1>
-                    <p>
-                        Get a professionally-trained and trusted cook on time
-                    </p>
+        <div className="bg-slate-50 mt-10">
+            <div className="p-4">
+                <h1 className="text-center text-2xl bg-slate-50 rounded-full w-full p-2 mb-8">How it works</h1>
+                <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+                    {Howitworks.map((item, index) => (
+                        <div
+                            key={index}
+                            className="relative rounded-xl h-60 flex-1 flex items-center justify-center bg-cover bg-center text-white bg-neutral-400"
+                            style={{ backgroundImage: `url(${item.src})` }}
+                        >
+                            <div className="text-center bg-black bg-opacity-50 p-4 rounded-lg">
+                                <h1 className="text-lg font-semibold">Step {index + 1}</h1>
+                                <p>{item.text}</p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
+
     );
 };
 

@@ -49,12 +49,13 @@ const TopChef: React.FC = () => {
 
     return (
         <>
-        <section className="container mx-auto sm:p-4 md:p-8 lg:p-12 ">
-            <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Top chefs</h2>
-            <div className='flex flex-col sm:flex-row flex-wrap'>
+        <section className=" mx-auto bg-slate-50 ">
+            <div className="p-4">
+            <h2 className="text-3xl font-bold text-center text-gray-800 ">Top chefs</h2>
+            <div className='flex justify-center flex-col sm:flex-row flex-wrap'>
             {data?.map((items, index) => (
-                <div className=" p-2 " key={index}>
-                    <div className=" px-4 mb-6">
+                <div className=" " key={index}>
+                    <div className=" p-2">
                         <div className="bg-white rounded-lg overflow-hidden shadow-lg p-6">
                             <Image className="w-24 h-24 rounded-full mx-auto" width={30} height={30} src={"/images/page-1-img-1.png"} alt="Chef's Name" />
                             <h3 className="mt-4 text-xl text-center font-semibold text-gray-800">{items.chefName}</h3>
@@ -70,7 +71,9 @@ const TopChef: React.FC = () => {
                         </div>
                     </div>
                 </div>
+
             ))}
+            </div>
             </div>
         </section>
         </>

@@ -33,7 +33,7 @@ const Header: React.FC = () => {
     };
 
     return (
-        <nav className="flex justify-around bg-white text-black top-0 left-0 right-0 sticky z-50">
+        <nav className="flex justify-around bg-white text-black top-0 left-0 right-0 sticky  z-50">
             <div className='bg-transparent'>
                 <Link href="/">
                     <Image
