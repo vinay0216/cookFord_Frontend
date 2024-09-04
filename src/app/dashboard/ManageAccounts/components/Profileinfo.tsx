@@ -169,7 +169,7 @@ const Profileinfo = ({ handleTextChange, handleCheckboxChange, handleSelectChang
                   <div className="mt-1">
                     <input
                       type="checkbox"
-                      name="cusion"
+                      name="cuisine"
                       onChange={handleCheckboxChange}
                       id={`morning-${index}`}
                       value={item.cuisinetype}
@@ -224,7 +224,7 @@ const Profileinfo = ({ handleTextChange, handleCheckboxChange, handleSelectChang
                   <div className="mt-1">
                     <input
                       type="checkbox"
-                      name="food-type"
+                      name="food_Type"
                       onChange={handleCheckboxChange}
                       // id={index+1}}
                       value={item.name}
@@ -283,15 +283,15 @@ const Profileinfo = ({ handleTextChange, handleCheckboxChange, handleSelectChang
             </div>
 
             <div className="sm:col-span-2">
-    <label htmlFor="cuisine" className="block text-sm font-medium leading-6 text-gray-900">
+    <label htmlFor="cuisine_type" className="block text-sm font-medium leading-6 text-gray-900">
         Specialities
     </label>
     <div className="mt-2">
         <select
-            id="cuisine"  // Added an ID for accessibility and consistency
-            name="cuisine"
+            id="cuisine_type"  // Added an ID for accessibility and consistency
+            name="cuisine_type"
             onChange={handleSelectChange} // Apply the handler to store the selected value
-            autoComplete="cuisine-name"
+            autoComplete="cuisine_type"
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
         >
             <option value="Indian">Indian</option>
@@ -384,16 +384,16 @@ const Profileinfo = ({ handleTextChange, handleCheckboxChange, handleSelectChang
             </div>
 
             <div className="sm:col-span-2">
-              <label htmlFor="Experince" className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor="experience" className="block text-sm font-medium leading-6 text-gray-900">
                 Experince
               </label>
               <div className="mt-2">
                 <input
                   type="text"
-                  name="Experince"
+                  name="experience"
                   onChange={handleTextChange}
-                  id="Experince"
-                  autoComplete="Experince"
+                  id="experience"
+                  autoComplete="experience"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
