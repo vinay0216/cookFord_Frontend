@@ -10,7 +10,10 @@ import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import TimeSlote from './../../utils/constants';
 import Image from 'next/image';
-import {MakePayment} from './../../api/order';
+import { MakePayment } from './../../api/order';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
+import { useAppSelector } from '../lib/hooks';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -23,40 +26,32 @@ const Transition = React.forwardRef(function Transition(
 
 export default function FullScreenDialog({ open, setOpen }) {
   const [count, setCount] = React.useState(0);
-  console.log("open click in dialog count", count);
+  const isLogin = useAppSelector(state => state.auth.isAuthenticated);
+  const router = useRouter()
 
-  const handleInc = () => {
-    setCount(count + 1);
-  };
+  const handelpaynow = async (e) => {
 
-  const handleDec = () => {
-    setCount(count - 1);
-  };
+    console.log("pay now clicked");
+    toast.success("Payment Success ")
 
+    // try{
+    //   let order = { 
+    //     CustomerName:"vinay kumar", 
+    //     OrderID: "Order_ID",
+    //     OrderAmount: 100,
+    //     // CurrencyCode: Currency_Code,
+    //     number:"",
+    //     MID:"MID"+Date.now(),
+    //     TransectionID:"t"+Date.now()
+    //   }
 
+    //   const res = MakePayment(order)
+    //   console.log("res",res)
 
-const handelpaynow= async(e)=>{
-  
-  console.log("pay now clicked");
- 
-  try{
-    let order = { 
-      CustomerName:"vinay kumar", 
-      OrderID: "Order_ID",
-      OrderAmount: 100,
-      // CurrencyCode: Currency_Code,
-      number:"",
-      MID:"MID"+Date.now(),
-      TransectionID:"t"+Date.now()
-    }
-
-    const res = MakePayment(order)
-    console.log("res",res)
-
-  }catch(e){
-console.log(e)
+    //   }catch(e){
+    // console.log(e)
+    //   }
   }
-}
 
   return (
     <React.Fragment>
@@ -65,7 +60,7 @@ console.log(e)
         open={open}
         TransitionComponent={Transition}
       >
-        <AppBar className="bg-orange-600">
+        <AppBar className="bg-slate-300">
           <Toolbar>
             <IconButton
               edge="start"
@@ -84,33 +79,56 @@ console.log(e)
           </Toolbar>
         </AppBar>
         <form className="pt-6 mt-5" >
-          <div className="flex flex-col md:flex-row p-9 mt-6 gap-6 object-cover bg-blend-normal "
-          style={{ backgroundImage: `url(/images/foods.png)`, backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            height: '90vh',
-            width: '99vw',}}
-         
+          <div className="flex flex-col md:flex-row p-6 mt-6 gap-6 object-cover bg-slate-500 "
+            style={{
+              backgroundImage: `url(/images/photo.jpg)`, backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              height: '90vh',
+              // width: '99vw',
+            }}
+
           >
-            <div className='basis-2/4'>
-              <h1 className="text-2xl font-semibold">Part 1</h1>
+            <div className='basis-2/4 pt-60  '>
+              <h1 className="text-3xl font-semibold text-center text-green-500 bg-white ">Next Generation Cook Facilitator</h1>
+              <p className='text-2xl text-center text-green-500 bg-white'>Get a Trial of this cook</p>
             </div>
             <div className='basis-2/5 p-9 bg-slate-50  rounded-lg'>
               <div className='mb-4'>
                 <h1 className="font-bold text-xl mb-3">Fill your requirements</h1>
                 <p className='font-light  mb-4'>Let us find your perfect cook</p>
               </div>
-              <div className="flex shadow-2xl bg-white rounded-lg  p-2 mb-4 justify-between items-center">
+              <div className="flex  bg-white rounded-lg  p-2 mb-4 justify-between items-center">
                 <p>Select Total No. of People</p>
                 <div className='flex items-center'>
-                  <button onClick={handleDec} className='m-2 rounded'>-</button>
+                  {/* <button onClick={()=>setCount(count-1)} className='m-2 rounded'>-</button>
                   <p className='bg-gray-100 m-2 mx-2 rounded'>{count}</p>
-                  <button onClick={handleInc} className='m-2  rounded'>+</button>
+                  <button onClick={()=>setCount(count+1)} className='m-2  rounded'>+</button> */}
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCount(count - 1);
+                    }}
+                    className='m-2 rounded'
+                  >
+                    -
+                  </button>
+                  <p className='bg-gray-100 m-2 mx-2 rounded'>{count}</p>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCount(count + 1);
+                    }}
+                    className='m-2  rounded'
+                  >
+                    +
+                  </button>
+
                 </div>
               </div>
-              <div className='mb-4'>
+              <div className='mb-4 rounded-lg'>
                 <p className="font- ">Choose your meals and visits</p>
                 <div className="bg-white  p-2">
-                  <div className="flex items-center gap-x-3">
+                  <div className="flex items-center gap-x-3 Breakfast, Lunch (01 visit)">
                     <input
                       id="user"
                       value="user"
@@ -150,15 +168,15 @@ console.log(e)
               </div>
               <div className='mb-4'>
                 <p className="font-sm">Select time for regular daily visit</p>
-                <div className="bg-white p-2 flex justify-between rounded shadow-lg">
-                      <p>{ "Breakfast, Lunch (01 visit)"}</p>
+                <div className="bg-white p-2 flex justify-between rounded ">
+                  <p>{"Breakfast, Lunch (01 visit)"}</p>
                   <select>
                     {TimeSlote?.morning.map((item, index) => (
                       <>
-                      <p>Select time for vesit </p>
-                      <option className='bg-white' key={index} value="">{item?.startTime}</option>
-                      {console.log( "inside select=>",item.startTime)}
-                     
+                        <p>Select time for vesit </p>
+                        <option className='bg-white' key={index} value="">{item?.startTime}</option>
+                        {console.log("inside select=>", item.startTime)}
+
                       </>
                     ))}
                   </select>
@@ -204,18 +222,21 @@ console.log(e)
                     </label>
                   </div>
                 </div>
-                
+
               </div>
               <div className='flex justify-between p-4 bg-white shadow-xl mt-3 '>
-                    <div className=' gap-4'>
-                      <span className='font-light text-sm'>Charges may be Differ from the Actual price</span>
-                      <p className='font-normal text-base'>Total Amount to Pay  <span className='font-bold'> ₹{"5000"}/Months</span> </p>
-                    </div>
-                    
-                
-                    <button onClick={handelpaynow} className='bg-green-600 p-2 rounded hover:bg-green-800 text-white'>Pay now</button>
+                <div className=' gap-4'>
+                  <span className='font-light text-sm'>Charges may be Differ from the Actual price</span>
+                  <p className='font-normal text-base'>Total Amount to Pay  <span className='font-bold'> ₹{"5000"}/Months</span> </p>
                 </div>
-                
+                  {isLogin === true ? 
+                  <button onClick={handelpaynow} className='bg-green-600 p-2 rounded hover:bg-green-800 text-white cursor-pointer'>Pay now</button>
+                  :
+                  <div onClick={(()=> router.push('/coustomers/login'))} className='bg-green-600 p-2 rounded hover:bg-green-800 text-white cursor-pointer'>Login to Pay</div>
+                  }
+                  
+              </div>
+
             </div>
           </div>
         </form>

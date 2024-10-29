@@ -6,6 +6,7 @@ import {userLogin} from '../../../api/user'
 // import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
+import { useSearchParams } from 'next/navigation';
 import {useDispatch} from 'react-redux'
 import {login} from '../../lib/features/authSlice'
 import Link from 'next/link'
@@ -19,14 +20,19 @@ const Login: React.FC = () => {
     password:''
   })
 
-  const dispatch = useDispatch()
+const dispatch = useDispatch()
 const router = useRouter()
+const searchParams = useSearchParams(); 
+console.log("search parames==>",searchParams)
+console.log("query ===>",router)
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({...formData, [e.target.name]: e.target.value})
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // router.push(userType === "provider" ? '/dashboard/ManageAccounts' : '/provider/cook-for-Monthly-basis');
   
     try {
       const res = await userLogin(formData);
@@ -34,7 +40,9 @@ const router = useRouter()
       if (res.status === 200) {
         dispatch(login(res.data));
         let { userType } = res.data;
-        router.push(userType === "provider" ? '/dashboard/ManageAccounts' : '/provider/cook-for-Monthly-basis');
+        const next = searchParams.get('next');
+        console.log("next route ===>",next)
+        await router.push(next || '/');
         toast.success(res.data.message);
       } else {
         toast.error(res?.data.error);
@@ -74,7 +82,7 @@ const router = useRouter()
                   <button type='submit' className=' bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
                     Login
                   </button>
-                 <p>Don't have an account 
+                 <p>Don`t have an account 
                   <Link href="signup"> Register </Link>
                   </p>
                 </div>

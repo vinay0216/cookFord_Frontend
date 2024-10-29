@@ -10,6 +10,8 @@ import Profileinfo from './components/Profileinfo';
 import Personalinfo from './components/Personalinfo';
 import { createProfile } from '@/api/user';
 import { useAppSelector } from '@/app/lib/hooks';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const steps = ['Step-1', 'Step-2', 'Step-3'];
 
@@ -59,10 +61,18 @@ const Page: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const router = useRouter()
   const handleSubmit = async () => {
     try {
       const res = await createProfile(formData, token); // Fixed variable name here
       console.log("Api response =>", res);
+      if(res?.status === 201){
+        toast.success("Profile created!")
+        router.push("/provider/cook-for-Monthly-basis")
+      }else{
+        toast.error(res?.data.error);
+        router.push("/coustomers/login")
+      }
     } catch (error) {
       console.error("Error:", error);
     }
