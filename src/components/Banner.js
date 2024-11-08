@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
 const Banner = () => {
@@ -24,7 +23,7 @@ const Banner = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       handleNext();
-    }, 5000); // Change slide every 3 seconds
+    }, 5000); // Change slide every 5 seconds
     return () => clearInterval(interval);
   }, []);
 
@@ -34,7 +33,7 @@ const Banner = () => {
       <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
         {images.map((item) => (
           <div key={item.id} className="flex-shrink-0 w-full h-[35rem]">
-            <Image src={item.src} alt={item.alt} width={1600} height={800} className="w-full h-full object-cover" />
+            <img src={item.src} alt={item.alt} width={1600} height={800} className="w-full h-full object-cover" />
           </div>
         ))}
       </div>
@@ -74,3 +73,4 @@ const Banner = () => {
 };
 
 export default Banner;
+
