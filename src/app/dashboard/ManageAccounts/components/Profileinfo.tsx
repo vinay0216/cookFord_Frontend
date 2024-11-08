@@ -3,14 +3,8 @@ import React, { useEffect, useState } from 'react'
 // import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { CookPrefrence } from '@/api/utills'
 
-interface ProfileInfoProps {
-  handleTextChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleCheckboxChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSelectChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-}
 
-
-const Profileinfo: React.FC<ProfileInfoProps> = ({ handleTextChange, handleCheckboxChange, handleSelectChange }) => {
+const Profileinfo = ({ handleTextChange, handleCheckboxChange, handleSelectChange }) => {
   const [prefrence, SetPrefrence] = useState([])
   const [timePreferences, cuisinePreferences, languagePreferences] = prefrence;
   let FoodType = [{ "id": 1, "name": "vag" }, { "id": 2, "name": "NON vag" }]
@@ -289,39 +283,39 @@ const Profileinfo: React.FC<ProfileInfoProps> = ({ handleTextChange, handleCheck
             </div>
 
             <div className="sm:col-span-2">
-              <label htmlFor="cuisine_type" className="block text-sm font-medium leading-6 text-gray-900">
-                Specialities
-              </label>
-              <div className="mt-2">
-                <select
-                  id="cuisine_type"  // Added an ID for accessibility and consistency
-                  name="cuisine_type"
-                  onChange={handleSelectChange} // Apply the handler to store the selected value
-                  autoComplete="cuisine_type"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                >
-                  <option value="Indian">Indian</option>
-                  <option value="Chinese">Chinese</option> {/* Corrected the spelling */}
-                  <option value="Mexican">Mexican</option> {/* Corrected the spelling */}
-                </select>
-              </div>
-            </div>
+    <label htmlFor="cuisine_type" className="block text-sm font-medium leading-6 text-gray-900">
+        Specialities
+    </label>
+    <div className="mt-2">
+        <select
+            id="cuisine_type"  // Added an ID for accessibility and consistency
+            name="cuisine_type"
+            onChange={handleSelectChange} // Apply the handler to store the selected value
+            autoComplete="cuisine_type"
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+        >
+            <option value="Indian">Indian</option>
+            <option value="Chinese">Chinese</option> {/* Corrected the spelling */}
+            <option value="Mexican">Mexican</option> {/* Corrected the spelling */}
+        </select>
+    </div>
+</div>
 
-            <div className="sm:col-span-2">
-              <label htmlFor="age" className="block text-sm font-medium leading-6 text-gray-900">
-                Age
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="age"
-                  onChange={handleTextChange}
-                  id="age"
-                  autoComplete="age"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+<div className="sm:col-span-2">
+  <label htmlFor="age" className="block text-sm font-medium leading-6 text-gray-900">
+    Age
+  </label>
+  <div className="mt-2">
+    <input
+      type="text"
+      name="age"
+      onChange={handleTextChange}
+      id="age"
+      autoComplete="age"
+      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+    />
+  </div>
+</div>
 
 
             <div className="sm:col-span-2">

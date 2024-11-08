@@ -15,8 +15,9 @@ const Header: React.FC = () => {
     const isLogin = useAppSelector(state => state.auth.isAuthenticated);
     const dispatch = useAppDispatch();
     const router = useRouter();
+
     const open = Boolean(anchorEl);
-    const userId = useAppSelector(state => state.auth.user);
+
     const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -102,11 +103,10 @@ const Header: React.FC = () => {
                             'aria-labelledby': 'profile-button',
                         }}
                     >
-                       <Link href={`/profile/${userId}`}>
+                        <Link href="/dashboard/profile">
                             <MenuItem>My Profile</MenuItem>
                         </Link>
-
-                        <Link href="/dashboard/ManageAccounts">
+                        <Link href="/dashboard/profile">
                             <MenuItem>Settings</MenuItem>
                         </Link>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>

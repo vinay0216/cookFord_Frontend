@@ -7,9 +7,6 @@ import { useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
  import { Pagination } from "@mui/material";
-import Card from '@/app/provider/card';
-//  import {Movie} from '../card/Movie';
-const Movie = dynamic(() => import('@/app/provider/card'));
 
 // Lazy loaded components
 const SearchFilter = dynamic(() => import('@/app/ui/SearchFilter'));
@@ -56,41 +53,39 @@ export default function Page({ params }: { params: { slug: string } }) {
                                         <ProgresiveLoder />
                                         :
                                         data.map((item, index) => (
-                                            // <div key={index} className="p-2 max-w-3xl mx-auto bg-white rounded shadow-md   mt-4">
-                                            //     <div className="flex gap-4 p-4">
-                                            //         <div>
-                                            //             <div className="mx-auto grid justify-items-center m-4">
-                                            //                 <Image className="h-20 w-20" src="/images/new-image/defaultchef.png" width={70} height={70} alt="Company Logo" />
-                                            //             </div>
-                                            //             <Link href={`/profile/${item._id}`}>
-                                            //                 <button type="button" className="px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-red-700 focus:outline-none focus:ring focus:border-blue-300">
-                                            //                     View Profile
-                                            //                 </button>
-                                            //             </Link>
-                                            //         </div>
-                                            //         <div>
-                                            //             <div className="text-xl font-normal text-black">
-                                            //                 <p>{`${item?.profile?.firstname}  ${item?.profile?.lastname}`}</p>
-                                            //             </div>
-                                            //             <div className="text-black font-normal flex-wrap ">
-                                            //                 <p className="bg-orange-400">
-                                            //                     {item.profile?.cuisine + ','}
-                                            //                 </p>
-                                            //             </div>
-                                            //             <div className="text-gray-500 font-normal ">
-                                            //                 <p>
-                                            //                     Experience: {item.profile?.experience}
-                                            //                 </p>
-                                            //             </div>
-                                            //             <p className="text-gray-500"> From:{item.profie?.from}</p>
-                                            //             <p className="text-gray-500"> Full Time Price : Rs.{item.profile?.fulltimeprice} / Month</p>
-                                            //         </div>
-                                            //     </div>
-                                            // </div>
-                                            <Card key={index} item = {item}/>
+                                            <div key={index} className="p-2 max-w-2xl mx-auto bg-white rounded-xl shadow-md   mt-4">
+                                                <div className="flex gap-2">
+                                                    <div>
+                                                        <div className="mx-auto grid justify-items-center m-4">
+                                                            <Image className="h-20 w-20" src="/images/new-image/defaultchef.png" width={50} height={50} alt="Company Logo" />
+                                                        </div>
+                                                        <Link href={`/profile/${item._id}`}>
+                                                            <button type="button" className="px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-red-700 focus:outline-none focus:ring focus:border-blue-300">
+                                                                View Profile
+                                                            </button>
+                                                        </Link>
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-xl font-normal text-black">
+                                                            <p>{item.username}</p>
+                                                        </div>
+                                                        <div className="text-black font-normal ">
+                                                            <p className="bg-orange-400">
+                                                                {item.profile?.cuisine}
+                                                            </p>
+                                                        </div>
+                                                        <div className="text-gray-500 font-normal ">
+                                                            <p>
+                                                                Experience: {item.profile?.experience}
+                                                            </p>
+                                                        </div>
+                                                        <p className="text-gray-500"> From:{item.profie?.from}</p>
+                                                        <p className="text-gray-500"> Full Time Price : Rs.{item.profile?.fulltimeprice} / Month</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         ))}
                                 </section>
-                                <Movie/>
                                 <div className="flex justify-center mt-9">
                                     <Pagination count={10} color="primary" />
                                 </div>
