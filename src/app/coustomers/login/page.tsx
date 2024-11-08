@@ -23,6 +23,8 @@ const Login: React.FC = () => {
 const dispatch = useDispatch()
 const router = useRouter()
 const searchParams = useSearchParams(); 
+console.log("search parames==>",searchParams)
+console.log("query ===>",router)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({...formData, [e.target.name]: e.target.value})
@@ -34,10 +36,12 @@ const searchParams = useSearchParams();
   
     try {
       const res = await userLogin(formData);
+      console.log("response",res.data)
       if (res.status === 200) {
         dispatch(login(res.data));
         let { userType } = res.data;
         const next = searchParams.get('next');
+        console.log("next route ===>",next)
         await router.push(next || '/');
         toast.success(res.data.message);
       } else {

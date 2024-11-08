@@ -29,6 +29,7 @@ const Page: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set<number>());
   const [formData, setFormData] = useState<FormDataType>({});
+  console.log("form data==>",formData);
 
   const token = useAppSelector((state) => state.auth.accessToken);
 
@@ -44,10 +45,9 @@ const Page: React.FC = () => {
     });
   };
 
-  const handleTextChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
@@ -65,6 +65,7 @@ const Page: React.FC = () => {
   const handleSubmit = async () => {
     try {
       const res = await createProfile(formData, token); // Fixed variable name here
+      console.log("Api response =>", res);
       if(res?.status === 201){
         toast.success("Profile created!")
         router.push("/provider/cook-for-Monthly-basis")

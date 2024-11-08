@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-const baseurl = 'http://88.222.214.164:5000';
-// const baseurl = 'http://localhost:5000';
+// const baseurl = 'http://16.171.133.152:5000';
+const baseurl = 'http://localhost:5000';
 
 
  async function userRegister(data) {
+    console.log(data)
     try {
         const response = await axios.post(`${baseurl}/api/users/signup `, data);
         return response;

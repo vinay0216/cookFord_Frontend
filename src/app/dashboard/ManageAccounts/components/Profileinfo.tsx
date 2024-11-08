@@ -2,38 +2,18 @@
 import React, { useEffect, useState } from 'react'
 // import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { CookPrefrence } from '@/api/utills'
+
 interface ProfileInfoProps {
-  handleTextChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  handleTextChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleCheckboxChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSelectChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 
-interface TimePreference {
-  morning: { id: number; time: string; _id: string }[];
-  afternoon: { id: number; time: string; _id: string }[];
-  evening: { id: number; time: string; _id: string }[];
-}
-
-interface CuisinePreference {
-  cuisine: string[];
-}
-
-interface LanguagePreference {
-  language: string[];
-}
-
 const Profileinfo: React.FC<ProfileInfoProps> = ({ handleTextChange, handleCheckboxChange, handleSelectChange }) => {
-  const [prefrence, SetPrefrence] = useState<[TimePreference, CuisinePreference, LanguagePreference]>([
-    { morning: [], afternoon: [], evening: [] },
-    { cuisine: [] },
-    { language: [] },
-  ]);
-
+  const [prefrence, SetPrefrence] = useState([])
   const [timePreferences, cuisinePreferences, languagePreferences] = prefrence;
   let FoodType = [{ "id": 1, "name": "vag" }, { "id": 2, "name": "NON vag" }]
-
-  console.log("prefrence==>",timePreferences)
 
   useEffect(() => {
     async function getPrefrence() {
@@ -142,7 +122,7 @@ const Profileinfo: React.FC<ProfileInfoProps> = ({ handleTextChange, handleCheck
                   <div className="mt-1">
                     <input
                       type="checkbox"
-                      name="afternoon"  
+                      name="afternoon"  // Corrected to "afternoon" to match key in formData
                       onChange={handleCheckboxChange}
                       id={`afternoon-${index}`}
                       value={item.time}
@@ -189,24 +169,25 @@ const Profileinfo: React.FC<ProfileInfoProps> = ({ handleTextChange, handleCheck
           </label>
           <div className="sm:col-span-2 flex p-2 ml-2 flex-wrap">
 
-          {cuisinePreferences?.cuisine?.map((item, index) => (
-              <div key={index} className="flex gap-1 ml-3">
-                <div className="mt-1">
-                  <input
-                    type="checkbox"
-                    name="cuisine"
-                    onChange={handleCheckboxChange}
-                    id={`cuisine-${index}`}
-                    value={item} 
-                    className="form-checkbox h-4 w-4 text-indigo-600"
-                  />
+            {cuisinePreferences?.cuisine?.map((item, index) => {
+              return (
+                <div key={index} className='flex gap-1 ml-3 '>
+                  <div className="mt-1">
+                    <input
+                      type="checkbox"
+                      name="cuisine"
+                      onChange={handleCheckboxChange}
+                      id={`morning-${index}`}
+                      value={item.cuisinetype}
+                      className="form-checkbox h-4 w-4 text-indigo-600"
+                    />
+                  </div>
+                  <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
+                    {item.cuisinetype}
+                  </label>
                 </div>
-                <label htmlFor={`cuisine-${index}`} className="block text-sm font-medium leading-6 text-gray-900">
-                  {item}  
-                </label>
-              </div>
-            ))}
-
+              )
+            })}
           </div>
         </div>
         <div className="mt-4">
@@ -224,12 +205,12 @@ const Profileinfo: React.FC<ProfileInfoProps> = ({ handleTextChange, handleCheck
                       name="language"
                       onChange={handleCheckboxChange}
                       id={`morning-${index}`}
-                      value={item}
+                      value={item.langtype}
                       className="form-checkbox h-4 w-4 text-indigo-600"
                     />
                   </div>
                   <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
-                    {item}
+                    {item.langtype}
                   </label>
                 </div>
 
@@ -274,7 +255,7 @@ const Profileinfo: React.FC<ProfileInfoProps> = ({ handleTextChange, handleCheck
                 <select
                   id="country"
                   name="country"
-                  onChange={handleSelectChange} 
+                  onChange={handleSelectChange} // Apply the handler here
                   autoComplete="country-name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 >
@@ -294,7 +275,7 @@ const Profileinfo: React.FC<ProfileInfoProps> = ({ handleTextChange, handleCheck
               <div className="mt-2">
                 <select
                   name="religion"
-                  onChange={handleSelectChange} 
+                  onChange={handleSelectChange} // Apply the handler here
                   autoComplete="religion-name"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 >
@@ -313,15 +294,15 @@ const Profileinfo: React.FC<ProfileInfoProps> = ({ handleTextChange, handleCheck
               </label>
               <div className="mt-2">
                 <select
-                  id="cuisine_type"  
+                  id="cuisine_type"  // Added an ID for accessibility and consistency
                   name="cuisine_type"
-                  onChange={handleSelectChange} 
+                  onChange={handleSelectChange} // Apply the handler to store the selected value
                   autoComplete="cuisine_type"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 >
                   <option value="Indian">Indian</option>
-                  <option value="Chinese">Chinese</option>
-                  <option value="Mexican">Mexican</option>
+                  <option value="Chinese">Chinese</option> {/* Corrected the spelling */}
+                  <option value="Mexican">Mexican</option> {/* Corrected the spelling */}
                 </select>
               </div>
             </div>
