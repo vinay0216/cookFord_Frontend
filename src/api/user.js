@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseurl = 'http://88.222.214.164:5000';
+const baseurl = 'https://cookfordbackendserver-production.up.railway.app';
 // const baseurl = 'http://localhost:5000';
 
 
