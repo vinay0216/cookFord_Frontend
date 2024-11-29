@@ -12,11 +12,20 @@ import { logout } from '@/app/lib/features/authSlice';
 
 const Header: React.FC = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const isLogin = useAppSelector(state => state.auth.isAuthenticated);
+    const [isLogin, setIsLogin] = useState<string | null>(null);
+    // const isLogin = useAppSelector(state => state.auth.isAuthenticated);
+    
     const dispatch = useAppDispatch();
     const router = useRouter();
 
     const open = Boolean(anchorEl);
+
+    useEffect(() => {
+        // Ensure code runs only on the client side
+        const accessToken = localStorage.getItem("accessToken");
+        setIsLogin(accessToken);
+        console.log("isLogin=>", accessToken);
+      }, []);
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -27,7 +36,8 @@ const Header: React.FC = () => {
     };
 
     const handleLogout = () => {
-        dispatch(logout());
+        // dispatch(logout());
+        localStorage.clear()
         router.push('/coustomers/login');
         handleClose();
     };
@@ -103,10 +113,10 @@ const Header: React.FC = () => {
                             'aria-labelledby': 'profile-button',
                         }}
                     >
-                        <Link href="/dashboard/profile">
+                        <Link href="/dashboard/ManageAccounts">
                             <MenuItem>My Profile</MenuItem>
                         </Link>
-                        <Link href="/dashboard/profile">
+                        <Link href="/dashboard/ManageAccounts">
                             <MenuItem>Settings</MenuItem>
                         </Link>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>

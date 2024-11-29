@@ -30,16 +30,27 @@ const router = useRouter()
   
     try {
       const res = await userLogin(formData);
-      console.log("response",res.data)
+      console.log("response", res.data);
+  
       if (res.status === 200) {
         dispatch(login(res.data));
-        let { userType } = res.data;
+  
+        const { userType, accessToken } = res.data;
+  
+        // Correctly store the accessToken in localStorage
+        localStorage.setItem("accessToken", accessToken);
+  
+        // Redirect user based on userType
         router.push(userType === "provider" ? '/dashboard/ManageAccounts' : '/provider/cook-for-Monthly-basis');
+        
+        // Show success toast
         toast.success(res.data.message);
       } else {
-        toast.error(res?.data.error);
+        // Handle API error response
+        toast.error(res?.data?.error || "An unexpected error occurred.");
       }
     } catch (error) {
+      // Handle general errors
       toast.error("An error occurred. Please try again.");
     }
   };

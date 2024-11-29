@@ -15,18 +15,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 })
 
 export default function FullScreenDialog({ open, setOpen }) {
-  const [count, setCount] = React.useState(0)
+  const [count, setCount] = React.useState(0);
   console.log("open click in dialog count", count)
 
-  const handleInc = () => {
-    setCount(count + 1)
-  }
+  
+ 
 
-  const handleDec = () => {
-    setCount(count - 1)
-  }
-
-  const handelpaynow = async e => {
+  const handelpaynow = async (e)=> {
+    
     console.log("pay now clicked")
 
     try {
@@ -91,14 +87,22 @@ export default function FullScreenDialog({ open, setOpen }) {
                   Let us find your perfect cook
                 </p>
               </div>
-              <div className="flex shadow-2xl bg-white rounded-lg  p-2 mb-4 justify-between items-center">
+              <div className="flex shadow-2xl bg-white rounded-lg p-2 mb-4 justify-between items-center">
                 <p>Select Total No. of People</p>
                 <div className="flex items-center">
-                  <button onClick={handleDec} className="m-2 rounded">
+                  <button
+                    type="button" // Prevents the default form submission behavior
+                    onClick={() => setCount((prevCount) => prevCount - 1)}
+                    className="m-2 rounded"
+                  >
                     -
                   </button>
                   <p className="bg-gray-100 m-2 mx-2 rounded">{count}</p>
-                  <button onClick={handleInc} className="m-2  rounded">
+                  <button
+                    type="button" // Prevents the default form submission behavior
+                    onClick={() => setCount((prevCount) => prevCount + 1)}
+                    className="m-2 rounded"
+                  >
                     +
                   </button>
                 </div>
@@ -232,7 +236,7 @@ export default function FullScreenDialog({ open, setOpen }) {
                 </div>
 
                 <button
-                  onClick={handelpaynow}
+                  onClick={(e)=>handelpaynow}
                   className="bg-green-600 p-2 rounded hover:bg-green-800 text-white"
                 >
                   Pay now
