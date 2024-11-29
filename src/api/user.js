@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const baseurl = 'https://cookfordbackendserver-production.up.railway.app';
-// const baseurl = 'http://localhost:5000';
+const baseurl = process.env.NEXT_PUBLIC_BASEURL;
+console.log("baseurl:", baseurl);
 
 
  async function userRegister(data) {
