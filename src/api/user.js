@@ -24,6 +24,21 @@ console.log("baseurl:", baseurl);
     }
 }
 
+async function currentUserProfile(token) {
+    console.log("Token received:", token);
+    try {
+        const response = await axios.get(`${baseurl}/api/users/currentuser`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return response;
+    } catch (error) {
+        return error.response;
+    }
+}
+
+
 
 async function createProfile(data, token) {
     try {
@@ -67,4 +82,4 @@ async function bookService(id){
 }
 
 
-export { userRegister, userLogin,createProfile,getUsersProfile ,getUsersProfilbyid,bookService };
+export { userRegister, userLogin,createProfile,getUsersProfile ,getUsersProfilbyid,bookService,currentUserProfile };

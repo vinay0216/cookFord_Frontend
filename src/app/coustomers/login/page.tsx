@@ -41,7 +41,7 @@ const router = useRouter()
         localStorage.setItem("accessToken", accessToken);
   
         // Redirect user based on userType
-        router.push(userType === "provider" ? '/dashboard/ManageAccounts' : '/provider/cook-for-Monthly-basis');
+        router.push(userType === "provider" ? '/dashboard/ManageAccounts' : '/coustomers/user');
         
         // Show success toast
         toast.success(res.data.message);

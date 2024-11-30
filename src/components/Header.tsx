@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/app/lib/hooks';
 import { logout } from '@/app/lib/features/authSlice';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
 const Header: React.FC = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -91,7 +92,8 @@ const Header: React.FC = () => {
                 </div>
             ) : (
                 <>
-                    <Button
+                <div>
+                <Button
                         id="profile-button"
                         className='text-black'
                         aria-controls={open ? 'profile-menu' : undefined}
@@ -104,6 +106,11 @@ const Header: React.FC = () => {
                     >
                         My Profile
                     </Button>
+                    <AccountBalanceWalletIcon/>
+                    <span className='p-2'> ₹ 50</span>
+                     
+                </div>
+                    
                     <Menu
                         id="profile-menu"
                         anchorEl={anchorEl}
