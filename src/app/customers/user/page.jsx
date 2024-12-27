@@ -3,7 +3,9 @@
 import { currentUserProfile } from "@/api/user"
 import { useEffect, useState } from "react"
 
-const UserProfile=()=>{
+const UserProfile=({data})=>{
+
+  console.log("userData==>",data)
     const [user,setUser]=useState()
     console.log("user",user);
     

@@ -63,9 +63,9 @@ async function getUsersProfile(){
         return error.response;
     }
 }
-async function getUsersProfilbyid(id){
+async function getUsersProfilbyid(obj){
     try{
-        const response = await axios.get(`${baseurl}/api/users/profile/${id}`)
+        const response = await axios.post(`${baseurl}/api/users/profile`,obj)
         return response;
     }catch(error){
         return error.response;

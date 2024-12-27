@@ -19,6 +19,8 @@ export default function Page({ params }) {
 
   const getUsers = useCallback(async () => {
     const data = await getUsersProfile()
+    console.log("data==>",data)
+
     dispatch(setProfiles(data.data))
   }, [dispatch])
 
@@ -73,7 +75,7 @@ export default function Page({ params }) {
                   {isLoading ? (
                     <ProgresiveLoder />
                   ) : (
-                    data.map((item, index) => (
+                    data?.map((item, index) => (
                       <div
                         key={index}
                         className="p-2 max-w-2xl mx-auto bg-white rounded-xl shadow-md   mt-4"

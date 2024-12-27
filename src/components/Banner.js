@@ -30,27 +30,39 @@ const Banner = () => {
   return (
     <div id="carouselExampleCrossfade" className="relative w-full overflow-hidden">
       {/* Carousel items */}
-      <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+      <div
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+      >
         {images.map((item) => (
-          <div key={item.id} className="flex-shrink-0 w-full h-[35rem]">
-            <img src={item.src} alt={item.alt} width={1600} height={800} className="w-full h-full object-cover" />
+          <div key={item.id} className="flex-shrink-0 w-full h-[20rem] sm:h-[25rem] md:h-[30rem] lg:h-[35rem]">
+            <img
+              src={item.src}
+              alt={item.alt}
+              width={1600}
+              height={800}
+              className="w-full h-full object-cover"
+            />
           </div>
         ))}
       </div>
 
       {/* Carousel indicators */}
-      <div className="absolute inset-x-0 bottom-0 mx-auto mb-4 flex justify-center space-x-2">
+      <div className="absolute inset-x-0 bottom-4 flex justify-center space-x-2">
         {images.map((_, index) => (
           <button
             key={index}
-            className={`h-2 w-8 rounded-full transition-opacity duration-300 ${activeIndex === index ? "bg-white opacity-100" : "bg-gray-500 opacity-50"}`}
+            className={`h-2 w-8 rounded-full transition-opacity duration-300 ${
+              activeIndex === index ? "bg-white opacity-100" : "bg-gray-500 opacity-50"
+            }`}
             onClick={() => setActiveIndex(index)}
           />
         ))}
       </div>
 
       {/* Carousel controls - prev item */}
-      <button
+         {/* Carousel controls - prev item */}
+         <button
         className="absolute inset-y-0 left-0 z-10 flex items-center justify-center p-4 text-white opacity-75 hover:opacity-100"
         onClick={handlePrev}
       >
@@ -73,4 +85,3 @@ const Banner = () => {
 };
 
 export default Banner;
-

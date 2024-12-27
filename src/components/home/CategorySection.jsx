@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react"
 import { GetCategory } from "@/api/category"
 import Link from "next/link"
+// import cat from '../public/me.png'
 
 const CategorySection = () => {
   const [category, setCategory] = useState([])
@@ -29,9 +30,9 @@ const CategorySection = () => {
           >
             <div
               className="bg-cover bg-center"
-              style={{ backgroundImage: `url(/images/logo.jpg)` }}
+              style={{ backgroundImage: `url(/images/new-image/cat-2.jpg)` }}
             >
-              <div className="bg-white bg-opacity-80 rounded-lg overflow-hidden h-48 w-48  flex items-center justify-center">
+              <div className=" bg-opacity-80 rounded-lg overflow-hidden h-48 w-48  flex items-center justify-center">
                 <Link href={`/provider/${item?.name}`}>
                   <h3 className="text-xl text-center font-semibold text-gray-800">
                     {item?.name}

@@ -5,6 +5,7 @@ import { userRegister } from '@/api/user';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface FormInputs {
   username: string;
@@ -195,11 +196,20 @@ const Signup: React.FC = () => {
                 {...register("longitude")}
                 type="hidden"
               />
-              <div className='justify-between'>
-                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type='submit'>
-                  Sign Up
-                </button>
-              </div>
+               <div className='flex justify-between items-center'>
+              <button 
+                className='bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' 
+                type='submit'
+              >
+                Sign Up
+              </button> 
+              <p>
+                I have an account 
+                <Link href="/customers/login">
+                  <span className='text-orange-500 hover:underline ml-2'>Login</span>
+                </Link>
+              </p>
+            </div>
             </form>
           </div>
         </div>
